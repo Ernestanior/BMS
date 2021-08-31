@@ -1,0 +1,39 @@
+@mainColor: #203770;
+@secondColor: #e97335;
+.header-bg {
+  height: 220px;
+  width: 100vw;
+  background-color: @mainColor;
+
+  .header-container {
+    width: 1280px;
+    margin: 0 auto;
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    .header-title {
+      font-size: 30px;
+      color: #fff;
+    }
+  }
+  .header-path {
+    display: block;
+    // background-color: #fff;
+    text-align-last: left;
+    width: 1280px;
+    margin: 20px auto;
+    font-size: 20px;
+    color: rgb(185, 185, 185);
+    span:nth-child(1) {
+      margin-right: 10px;
+      color: #fff;
+    }
+  }
+}
+@media screen and (max-width: 1280px) {
+  .header-bg {
+    .header-container {
+      width: 100vw;
+    }
+  }
+}
