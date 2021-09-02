@@ -1,21 +1,10 @@
 import React, { FC, ReactElement } from "react";
 import "./index.less";
-import {
-  MailFilled,
-  CaretDownFilled,
-  UnorderedListOutlined,
-} from "@ant-design/icons";
+import { MailFilled, CaretDownFilled } from "@ant-design/icons";
 import UserDetail from "./userDetail";
 import { Dropdown } from "antd";
 
-interface IProps {}
-const dropDown = (
-  <div style={{ position: "absolute", left: "-107px" }}>
-    <UserDetail></UserDetail>
-  </div>
-);
-
-const Index: FC<IProps> = ({}: IProps): ReactElement => {
+const Index: FC = (): ReactElement => {
   return (
     <ul className="header-other">
       <li>
@@ -26,11 +15,7 @@ const Index: FC<IProps> = ({}: IProps): ReactElement => {
           </span>
         </Dropdown>
       </li>
-      <li>
-        <Dropdown overlay={dropDown} placement="bottomLeft">
-          <UnorderedListOutlined />
-        </Dropdown>
-      </li>
+
       <li>帮助</li>
       <li>
         <MailFilled />

@@ -1,14 +1,17 @@
 import React, { FC, ReactElement } from "react";
 import "./index.less";
-import Search from "./search";
+import { Route, Switch } from "react-router-dom";
 import SiteList from "./siteList";
-interface IProps {}
-
-const Index: FC<IProps> = ({}: IProps): ReactElement => {
+import SitePage from "./sitePage";
+const Index: FC = (): ReactElement => {
   return (
-    <div>
-      <Search />
-      <SiteList />
+    <div className="site-container">
+      <Switch>
+        <Route path="/console/site/:sitename" component={SitePage}></Route>
+        <Route path="/console/site" component={SiteList}></Route>
+      </Switch>
+
+      {/* <Redirect to="/console/site/list"></Redirect> */}
     </div>
   );
 };

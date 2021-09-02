@@ -1,13 +1,13 @@
 import React, { FC, ReactElement } from "react";
 import "./index.less";
 import { Row, Col } from "antd";
-interface IProps {}
+// interface IProps {}
 
-const Index: FC<IProps> = ({}: IProps): ReactElement => {
+const Index: FC = (): ReactElement => {
   return (
     <div className="footer-bg">
       <Row className="footer-container">
-        <Col lg={12} md={24} sm={24} xs={24}>
+        <Col span={12}>
           <aside className="footer-aside">
             <h1>GREYPANEL</h1>
             <span>We give you the edge.</span>
@@ -19,7 +19,7 @@ const Index: FC<IProps> = ({}: IProps): ReactElement => {
             </span>
           </aside>
         </Col>
-        <Col lg={8} md={24} sm={24} xs={24}>
+        <Col span={8}>
           <section className="footer-section">
             <ul>
               <li>Center Privacy</li>

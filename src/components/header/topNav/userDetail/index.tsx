@@ -3,9 +3,8 @@ import { Row, Col } from "antd";
 import { PoweroffOutlined } from "@ant-design/icons";
 import "./index.less";
 import { useHistory } from "react-router";
-interface IProps {}
 
-const Index: FC<IProps> = ({}: IProps): ReactElement => {
+const Index: FC = (): ReactElement => {
   const history = useHistory();
   const funcList = [
     "个人概况",
@@ -22,9 +21,9 @@ const Index: FC<IProps> = ({}: IProps): ReactElement => {
   return (
     <div className="header-user-container">
       <Row className="header-user-funclist">
-        {funcList.map((item) => {
+        {funcList.map((item, index) => {
           return (
-            <Col span={12} className="header-user-funcitem">
+            <Col span={12} key={index} className="header-user-funcitem">
               {item}
             </Col>
           );

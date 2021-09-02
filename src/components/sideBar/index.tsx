@@ -1,5 +1,5 @@
 import React, { FC, ReactElement } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import "./index.less";
 
 interface IProps {
@@ -8,13 +8,21 @@ interface IProps {
 }
 
 const Index: FC<IProps> = ({ title, linkList }: IProps): ReactElement => {
+  const path = useLocation().pathname;
   return (
     <div className="side-bar-container">
       <h1>{title}</h1>
       <ul>
-        {linkList?.map((item) => (
-          <li>
-            <NavLink to={item.path}>{item.text}</NavLink>
+        {linkList?.map((item, index) => (
+          <li key={index}>
+            <NavLink
+              to={item.path}
+              className={`side-bar-link-list ${
+                path === item.path ? "side-list-active" : ""
+              }`}
+            >
+              {item.text}
+            </NavLink>
           </li>
         ))}
       </ul>

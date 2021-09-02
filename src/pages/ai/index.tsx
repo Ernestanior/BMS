@@ -3,10 +3,9 @@ import "./index.less";
 import SideBar from "components/sideBar";
 import { Menu, Dropdown, Button } from "antd";
 import { CaretDownFilled } from "@ant-design/icons";
-interface IProps {}
 
-const Index: FC<IProps> = ({}: IProps): ReactElement => {
-  const [setting, setSetting] = React.useState("自动");
+const Index: FC = (): ReactElement => {
+  const [setting, setSetting] = React.useState<String>("自动");
   const handleMenuClick = (e: any) => {
     setSetting(e.key);
   };

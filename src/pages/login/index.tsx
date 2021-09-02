@@ -4,12 +4,12 @@ import { Form, Input, Button } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import "./index.less";
 import { useHistory } from "react-router-dom";
-interface IProps {}
+
 interface IValue {
   username: String;
   password: String | Number;
 }
-const Index: FC<IProps> = ({}: IProps) => {
+const Index: FC = () => {
   const history = useHistory();
 
   function handleChange(value: any) {
@@ -17,7 +17,7 @@ const Index: FC<IProps> = ({}: IProps) => {
   }
   const onFinish = ({ username, password }: IValue) => {
     if (username === "ernest" && password === "123") {
-      history.replace("/home");
+      history.replace("/console");
     } else {
       alert("Invalid username or password");
     }
