@@ -21,7 +21,7 @@ const Index: FC = (): ReactElement => {
   const columns = [
     {
       title: (
-        <NavLink to="/console/site" className="home-table-title">
+        <NavLink to="/console/cdn-site" className="home-table-title">
           站点列表
         </NavLink>
       ),
@@ -35,7 +35,7 @@ const Index: FC = (): ReactElement => {
           | React.ReactPortal
           | null
           | undefined
-      ) => <NavLink to="/console/site">{text}</NavLink>,
+      ) => <NavLink to="/console/cdn-site">{text}</NavLink>,
     },
   ];
   return (

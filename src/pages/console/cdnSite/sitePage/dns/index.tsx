@@ -17,8 +17,11 @@ const Index: FC = (): ReactElement => {
         ]}
       ></SideBar>
       <Switch>
-        <Route path="/console/site/:sitename/dns/domain" component={Domain} />
-        <Redirect to="/console/site/:sitename/dns/domain" />
+        <Route
+          path="/console/cdn-site/:sitename/site-configuration/domain"
+          component={Domain}
+        />
+        <Redirect to="/console/cdn-site/:sitename/site-configuration/domain" />
       </Switch>
     </div>
   );

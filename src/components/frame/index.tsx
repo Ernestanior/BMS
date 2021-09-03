@@ -4,18 +4,17 @@ import Footer from "components/footer";
 import "./index.less";
 import { Switch, Route, Redirect } from "react-router-dom";
 import Console from "pages/console";
-import Site from "pages/site";
 
 const Index: FC = (): ReactElement => {
   return (
     <>
       <Header></Header>
       <section className="frame-section">
-        <Switch>
-          <Route path="/console/site" component={Site}></Route>
+        {/* <Switch>
           <Route path="/console/" component={Console}></Route>
           <Redirect to="/console/"></Redirect>
-        </Switch>
+        </Switch> */}
+        <Console></Console>
       </section>
       <Footer></Footer>
     </>

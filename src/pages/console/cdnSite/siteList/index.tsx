@@ -3,6 +3,7 @@ import { Table, Switch, Button } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import PubSub from "pubsub-js";
 import Search from "./search";
+import Mask from "./mask";
 import "./index.less";
 import { NavLink } from "react-router-dom";
 
@@ -61,7 +62,6 @@ for (let i = 0; i < 11; i++) {
     key: "g" + i,
     sitename: `test site ${i}`,
     cdnServing: "GreyPanel",
-    // status: <span className="site-list-status well">正常</span>,
     status: Status.正常,
     domains: 7,
     records: 200,
@@ -75,7 +75,6 @@ for (let i = 0; i < 7; i++) {
     key: "a" + i,
     sitename: `test site ${i}`,
     cdnServing: "AliCloud",
-    // status: <span className="site-list-status error">故障</span>,
     status: Status.故障,
     domains: 7,
     records: 200,
@@ -88,6 +87,7 @@ for (let i = 0; i < 7; i++) {
 const Index: FC = (): ReactElement => {
   const [selectedRowKeys, setSelectedKey] = React.useState<number[]>([]);
   const [data, setData] = React.useState<IData[]>(source);
+  const [mask, toggleMask] = React.useState<boolean>(false);
   // console.log(selectedRowKeys);
   // let token: string;
   const onSelectChange = (selectedRowKeys: any) => {
@@ -148,7 +148,9 @@ const Index: FC = (): ReactElement => {
       key: item.key,
       // sitename: item.sitename,
       sitename: (
-        <NavLink to={`/console/site/${item.sitename}`}>{item.sitename}</NavLink>
+        <NavLink to={`/console/cdn-site/${item.sitename}`}>
+          {item.sitename}
+        </NavLink>
       ),
       cdnServing: item.cdnServing,
       status: (
@@ -179,7 +181,11 @@ const Index: FC = (): ReactElement => {
     <>
       <Search></Search>
       <div className="site-list-container">
-        <Button type="primary" className="site-list-button">
+        <Button
+          type="primary"
+          className="site-list-button"
+          onClick={() => toggleMask(!mask)}
+        >
           <PlusOutlined />
           新增站点
         </Button>
@@ -203,6 +209,14 @@ const Index: FC = (): ReactElement => {
           dataSource={newlist}
         ></Table>
       </div>
+      <Mask
+        visible={mask}
+        onClose={() => toggleMask(!mask)}
+        onUpdate={(item: any) => {
+          setData([item, ...data]);
+          toggleMask(!mask);
+        }}
+      ></Mask>
     </>
   );
 };
