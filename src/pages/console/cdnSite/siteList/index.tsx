@@ -86,19 +86,43 @@ for (let i = 0; i < 7; i++) {
 
 const Index: FC = (): ReactElement => {
   const [selectedRowKeys, setSelectedKey] = React.useState<number[]>([]);
+  const [selectedRows, setSelectedRows] = React.useState<string[]>([]);
   const [data, setData] = React.useState<IData[]>(source);
   const [mask, toggleMask] = React.useState<boolean>(false);
   // console.log(selectedRowKeys);
   // let token: string;
-  const onSelectChange = (selectedRowKeys: any) => {
-    setSelectedKey(selectedRowKeys);
-  };
   const rowSelection = {
     selectedRowKeys,
-    onChange: onSelectChange,
+    onChange: (selectedRowKeys: any) => {
+      setSelectedKey(selectedRowKeys);
+    },
+    onSelect: (record: any, selected: any, selectedRows: any) => {
+      selectedRows = selectedRows.filter((item: any) => (item ? true : false));
+      const RowsList = selectedRows.reduce(
+        (pre: any, curr: any) => [...pre, curr.key],
+        []
+      );
+      // console.log(RowsList);
+      setSelectedRows(RowsList);
+    },
+  };
+  const handleDetele = () => {
+    setData(data.filter((item) => selectedRows.indexOf(item.key) === -1));
+  };
+  const handleBan = () => {
+    setData(
+      data.map((item) => {
+        if (selectedRows.indexOf(item.key) !== -1) {
+          item.status = Status.故障;
+          item.operate = "关闭";
+          console.log(item);
+        }
+        return item;
+      })
+    );
   };
   React.useEffect(() => {
-    PubSub.subscribe("SiteSearch", (_: any, condition: any) => {
+    const token = PubSub.subscribe("SiteSearch", (_: any, condition: any) => {
       if (condition) {
         let newSource: IData[] = source;
         for (let i in condition) {
@@ -137,9 +161,9 @@ const Index: FC = (): ReactElement => {
       } else {
         setData(source);
       }
-      // return () => {
-      // PubSub.unsubscribe(token);
-      // };
+      return () => {
+        PubSub.unsubscribe(token);
+      };
     });
   }, []);
 
@@ -148,9 +172,7 @@ const Index: FC = (): ReactElement => {
       key: item.key,
       // sitename: item.sitename,
       sitename: (
-        <NavLink to={`/console/cdn-site/${item.sitename}`}>
-          {item.sitename}
-        </NavLink>
+        <NavLink to={`/cdn-site/${item.sitename}`}>{item.sitename}</NavLink>
       ),
       cdnServing: item.cdnServing,
       status: (
@@ -169,6 +191,7 @@ const Index: FC = (): ReactElement => {
       operate: (
         <Switch
           className="site-list-switch"
+          key={item.operate}
           checkedChildren="开启"
           unCheckedChildren="关闭"
           defaultChecked={item.operate === "开启" ? true : false}
@@ -193,6 +216,7 @@ const Index: FC = (): ReactElement => {
           type="primary"
           disabled={selectedRowKeys.length === 0 ? true : false}
           className="site-list-button"
+          onClick={handleDetele}
         >
           批量删除
         </Button>
@@ -200,6 +224,7 @@ const Index: FC = (): ReactElement => {
           type="primary"
           disabled={selectedRowKeys.length === 0 ? true : false}
           className="site-list-button"
+          onClick={handleBan}
         >
           批量禁用
         </Button>

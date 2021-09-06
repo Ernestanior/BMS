@@ -3,17 +3,18 @@ import { Row, Col } from "antd";
 import { PoweroffOutlined } from "@ant-design/icons";
 import "./index.less";
 import { useHistory } from "react-router";
+import { NavLink } from "react-router-dom";
 
 const Index: FC = (): ReactElement => {
   const history = useHistory();
   const funcList = [
-    "个人概况",
-    "修改代码",
-    "登录限制",
-    "API管理",
-    "账户管理",
-    "服务商管理",
-    "证书管理",
+    { key: "info", title: "个人概况" },
+    { key: "reset-pwd", title: "修改代码" },
+    { key: "security", title: "安全设置" },
+    { key: "log", title: "操作记录" },
+    { key: "payment", title: "支付系统" },
+    { key: "", title: "服务商管理" },
+    { key: "", title: "证书管理" },
   ];
   const handleClick = () => {
     history.replace("/login");
@@ -24,7 +25,12 @@ const Index: FC = (): ReactElement => {
         {funcList.map((item, index) => {
           return (
             <Col span={12} key={index} className="header-user-funcitem">
-              {item}
+              <NavLink
+                to={`/user/${item.key}`}
+                className="header-user-funcitem-text"
+              >
+                {item.title}
+              </NavLink>
             </Col>
           );
         })}

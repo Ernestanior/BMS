@@ -20,26 +20,33 @@
   box-shadow: 0 2px 5px rgb(172, 171, 171);
   border-radius: 5px;
   //   overflow: hidden;
-  color: @mainColor;
   .header-user-funclist {
     .header-user-funcitem {
-      font-size: 15px;
       margin-top: 10px;
-      padding: 3px 0;
-      font-weight: 550;
-      user-select: none;
-      display: flex;
-      justify-content: center;
-      align-items: center;
       &:hover {
         background-color: @secondColor;
-        color: #fff;
       }
       &:nth-child(2n + 1) {
         border-right: 2px solid @secondColor;
       }
-      &:nth-child(5) {
-        color: #aaa;
+      &:nth-child(n + 5) {
+        pointer-events: none;
+        .header-user-funcitem-text {
+          color: #666;
+        }
+      }
+      .header-user-funcitem-text {
+        font-size: 15px;
+        padding: 3px 0;
+        user-select: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: 550;
+        color: @mainColor;
+        &:hover {
+          color: #fff;
+        }
       }
     }
   }

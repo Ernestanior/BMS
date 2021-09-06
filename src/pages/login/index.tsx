@@ -17,7 +17,7 @@ const Index: FC = () => {
   }
   const onFinish = ({ username, password }: IValue) => {
     if (username === "ernest" && password === "123") {
-      history.replace("/console");
+      history.replace("/home");
     } else {
       alert("Invalid username or password");
     }

@@ -1,22 +1,32 @@
 @mainColor: #203770;
 @secondColor: #e97335;
+.site-nav-bg {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+}
 .site-nav-container {
   width: 100vw;
   height: 50px;
   min-width: 900px;
   background-color: #203770;
   border-bottom: 6px solid @secondColor;
-  z-index: 999;
-  position: sticky;
-  top: 0;
-  left: 0;
-  right: 0;
+  overflow-y: hidden;
+  overflow-x: auto;
+
+  // 隐藏滚动条
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+  &::-webkit-scrollbar {
+    display: none; /* Chrome Safari */
+  }
   .header-bot-nav {
     font-size: 18px;
     display: flex;
     width: 1280px;
-    min-width: 900px;
-    overflow: scroll;
+    min-width: 1000px;
     margin: 0 auto;
 
     li {
@@ -29,12 +39,17 @@
         color: #fff;
         padding: 5px 30px;
       }
+      &:hover {
+        .bot-nav-container {
+          display: block;
+        }
+      }
     }
     .header-bot-nav-active::after {
       content: "";
       position: absolute;
       top: 42px;
-      left: 45%;
+      left: 43%;
       width: 15px;
       height: 15px;
       transform: rotate(45deg);

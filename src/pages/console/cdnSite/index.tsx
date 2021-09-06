@@ -7,8 +7,8 @@ const Index: FC = (): ReactElement => {
   return (
     <div className="site-container">
       <Switch>
-        <Route path="/console/cdn-site/:sitename" component={SitePage}></Route>
-        <Route path="/console/cdn-site" component={SiteList}></Route>
+        <Route path="/cdn-site/:sitename" component={SitePage}></Route>
+        <Route path="/cdn-site" component={SiteList}></Route>
       </Switch>
 
       {/* <Redirect to="/console/site/list"></Redirect> */}
