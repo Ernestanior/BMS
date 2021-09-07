@@ -60,7 +60,7 @@ const Index: FC<IProps> = ({ navList }: IProps): ReactElement => {
     log: "操作记录",
   };
   return (
-    <div className="site-nav-bg ">
+    <div className="site-nav-bg">
       <div className="site-nav-container">
         <ul className="header-bot-nav">
           {navList.map((item, index) => (

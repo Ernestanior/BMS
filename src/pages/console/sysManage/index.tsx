@@ -1,10 +1,13 @@
 import React, { FC, ReactElement } from "react";
-import "./index.less";
-
+import { Redirect, Route, Switch } from "react-router-dom";
+import UserList from "./userList";
 const Index: FC = (): ReactElement => {
   return (
-    <div>
-      <div style={{ height: "200px" }}>待开发</div>
+    <div style={{ height: "200px" }}>
+      <Switch>
+        <Route path="/system-management/userlist" component={UserList}></Route>
+        <Redirect to="/system-management/userlist"></Redirect>
+      </Switch>
     </div>
   );
 };

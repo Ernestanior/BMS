@@ -11,10 +11,10 @@ const Index: FC<IProps> = ({ subPath }: IProps): ReactElement => {
   return (
     <div className="bot-nav-bg">
       <ul className="bot-nav-container">
-        {subPath.map((item: any) => (
-          <li className="bot-nav-item">
-            {/* <NavLink to={item.path}>{item.title}</NavLink> */}
-            {item.title}
+        {subPath.map((item: any, index) => (
+          <li className="bot-nav-item" key={index}>
+            <NavLink to={item.path}>{item.title}</NavLink>
+            {/* {item.title} */}
           </li>
         ))}
       </ul>

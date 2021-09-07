@@ -1,10 +1,10 @@
 import React, { FC, ReactElement } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
-import Dns from "./dns";
+import SiteConfig from "./siteConfig";
 import Cache from "./cache";
 import Firewall from "./firewall";
 import Analyse from "./analyse";
-import CdnManage from "./cdnManage";
+import PlatMana from "./plat-mana";
 const Index: FC = (): ReactElement => {
   return (
     <div>
@@ -12,13 +12,13 @@ const Index: FC = (): ReactElement => {
         <Route path="/cdn-site/:sitename/firewall" component={Firewall}></Route>
         <Route path="/cdn-site/:sitename/analyse" component={Analyse}></Route>
         <Route
-          path="/cdn-site/:sitename/cdn-manage"
-          component={CdnManage}
+          path="/cdn-site/:sitename/platform-management"
+          component={PlatMana}
         ></Route>
         <Route path="/cdn-site/:sitename/cache" component={Cache}></Route>
         <Route
           path="/cdn-site/:sitename/site-configuration"
-          component={Dns}
+          component={SiteConfig}
         ></Route>
         <Redirect to="/cdn-site/:sitename/site-configuration" />
       </Switch>

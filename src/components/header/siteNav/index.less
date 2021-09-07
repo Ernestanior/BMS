@@ -16,7 +16,11 @@
   overflow-y: hidden;
   overflow-x: auto;
   // position: relative;
-
+  // position: sticky;
+  // top: 0;
+  // left: 0;
+  // right: 0;
+  // z-index: 999;
   // 隐藏滚动条
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE 10+ */
@@ -49,7 +53,7 @@
     .header-bot-nav-active::after {
       content: "";
       position: absolute;
-      top: 38px;
+      top: unset;
       // left: 1%;
       // z-index: 1111;
       // transform: translateX(-10px);
@@ -59,7 +63,7 @@
       border-right: 5px solid transparent;
       width: 0;
       height: 0;
-      transform: rotate(45deg) translate(-3px, 3px);
+      transform: rotate(45deg) translate(-7px, 0);
       background-color: @secondColor;
     }
   }

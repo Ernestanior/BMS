@@ -12,16 +12,16 @@ const Index: FC = (): ReactElement => {
         linkList={[
           {
             text: "域名与记录管理",
-            path: `/cdn-site/${path}/site-configuration/domain`,
+            path: `/cdn-site/${path}/site-configuration/dns/domain`,
           },
         ]}
       ></SideBar>
       <Switch>
         <Route
-          path="/cdn-site/:sitename/site-configuration/domain"
+          path="/cdn-site/:sitename/site-configuration/dns/domain"
           component={Domain}
         />
-        <Redirect to="/cdn-site/:sitename/site-configuration/domain" />
+        <Redirect to="/cdn-site/:sitename/site-configuration/dns/domain" />
       </Switch>
     </div>
   );
