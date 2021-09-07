@@ -21,8 +21,7 @@
       display: inline-block;
       height: 63px;
       line-height: 53px;
-      padding: 0 40px;
-      color: @mainColor;
+      padding: 0 20px;
       user-select: none;
       a {
         color: @mainColor;
@@ -31,9 +30,14 @@
         a {
           color: @secondColor;
         }
-        color: @secondColor;
         background-color: rgb(230, 230, 230);
       }
+    }
+    .bot-nav-active {
+      a {
+        color: @secondColor;
+      }
+      background-color: rgb(230, 230, 230);
     }
   }
 }

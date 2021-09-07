@@ -1,5 +1,5 @@
 import React, { FC, ReactElement } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import "./index.less";
 interface IProps {
   subPath: {
@@ -8,13 +8,19 @@ interface IProps {
   }[];
 }
 const Index: FC<IProps> = ({ subPath }: IProps): ReactElement => {
+  const currentPath = useLocation().pathname;
+
   return (
     <div className="bot-nav-bg">
       <ul className="bot-nav-container">
-        {subPath.map((item: any, index) => (
-          <li className="bot-nav-item" key={index}>
+        {subPath.map((item: any) => (
+          <li
+            className={`bot-nav-item ${
+              currentPath.includes(item.path) ? "bot-nav-active" : ""
+            }`}
+            key={item.path}
+          >
             <NavLink to={item.path}>{item.title}</NavLink>
-            {/* {item.title} */}
           </li>
         ))}
       </ul>
