@@ -45,11 +45,71 @@ const Index: FC = (): ReactElement => {
     navElement = (
       <SiteNav
         navList={[
-          "Site-Configuration",
-          "Cache",
-          "Firewall",
-          "Analyse",
-          "CDN-Manage",
+          {
+            mainPath: "Site-Configuration",
+            subPath: [
+              {
+                title: "用户列表",
+                path: "/cdn-site/:sitename/site-configuration/domain",
+              },
+            ],
+          },
+          {
+            mainPath: "Cache",
+            subPath: [
+              {
+                title: "内存设置",
+                path: "/cache",
+              },
+              {
+                title: "内存清理",
+                path: "/cache",
+              },
+            ],
+          },
+          {
+            mainPath: "Firewall",
+            subPath: [
+              {
+                title: "IP白名单",
+                path: "/firwall",
+              },
+              {
+                title: "IP黑名单",
+                path: "/firwall",
+              },
+              {
+                title: "UA白名单",
+                path: "/firwall",
+              },
+              {
+                title: "UA黑名单",
+                path: "/firwall",
+              },
+            ],
+          },
+          {
+            mainPath: "Analyse",
+            subPath: [
+              {
+                title: "网页性能分析",
+                path: "/analyse",
+              },
+              {
+                title: "CDN利用率分析",
+                path: "/analyse",
+              },
+              {
+                title: "平台分析",
+                path: "/analyse",
+              },
+              {
+                title: "使用率分析",
+                path: "/analyse",
+              },
+            ],
+          },
+          { mainPath: "CDN-Manage" },
         ]}
       ></SiteNav>
     );
@@ -65,21 +125,39 @@ const Index: FC = (): ReactElement => {
       </>
     );
     navElement = (
-      <SiteNav navList={["info", "reset-pwd", "security", "log"]}></SiteNav>
+      <SiteNav
+        navList={[
+          { mainPath: "info" },
+          { mainPath: "reset-pwd" },
+          { mainPath: "security" },
+          { mainPath: "log" },
+        ]}
+      ></SiteNav>
     );
   } else {
     pathElement = <></>;
     navElement = (
       <SiteNav
         navList={[
-          "Home",
-          "CDN-Site",
-          "System-Management",
-          "Customer-Management",
-          "Platform",
-          "DNS",
-          "Information-Inquiry",
-          "SSL-Management",
+          { mainPath: "Home" },
+          { mainPath: "CDN-Site" },
+          {
+            mainPath: "System-Management",
+            subPath: [
+              { title: "用户列表", path: "/system-management/userlist" },
+            ],
+          },
+          { mainPath: "Customer-Management" },
+          { mainPath: "Platform" },
+          {
+            mainPath: "DNS",
+            subPath: [
+              { title: "域名管理", path: "/dns/domain-management" },
+              { title: "记录管理", path: "/dns/record-management" },
+            ],
+          },
+          { mainPath: "Information-Inquiry" },
+          { mainPath: "SSL-Management" },
         ]}
       ></SiteNav>
     );

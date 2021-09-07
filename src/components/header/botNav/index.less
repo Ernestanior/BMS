@@ -1,11 +1,38 @@
 @mainColor: #203770;
 @secondColor: #e97335;
-.bot-nav-container {
-  background-color: pink;
-  position: absolute;
-  top: 50px;
-  width: 100vw;
-  height: 60px;
-  min-width: 900px;
-  display: none;
+.bot-nav-bg {
+  .bot-nav-container {
+    border-top: 7px solid @secondColor;
+    background-color: #fff;
+    box-shadow: 0 2px 5px #b3c8fd;
+    position: absolute;
+    top: unset;
+    left: -1px;
+    right: -1px;
+    // top: unset;
+    height: 70px;
+    z-index: 999;
+    text-align: left;
+    // min-width: 900px;
+    display: none;
+    padding: 0 5vw;
+    .bot-nav-item {
+      display: inline-block;
+      height: 63px;
+      line-height: 62px;
+      padding: 0 40px;
+      color: @mainColor;
+      user-select: none;
+      a {
+        color: @mainColor;
+      }
+      &:hover {
+        a {
+          color: @secondColor;
+        }
+        color: @secondColor;
+        background-color: rgb(230, 230, 230);
+      }
+    }
+  }
 }

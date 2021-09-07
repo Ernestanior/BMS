@@ -1,12 +1,22 @@
 import React, { FC, ReactElement } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import "./index.less";
-// import BotNav from "../botNav";
+import BotNav from "../botNav";
 
+interface SubPath {
+  title: string;
+  path: string;
+}
+interface NavList {
+  mainPath: string;
+  subPath?: SubPath[];
+}
 interface IProps {
-  navList: string[];
+  navList: NavList[];
 }
 const Index: FC<IProps> = ({ navList }: IProps): ReactElement => {
+  console.log(navList);
+
   const currentPath: string[] = useLocation()
     .pathname.split("/")
     .filter((n) => n !== "");
@@ -49,7 +59,6 @@ const Index: FC<IProps> = ({ navList }: IProps): ReactElement => {
     security: "安全设置",
     log: "操作记录",
   };
-  // const navList = ["dns", "firewall", "cache", "analyse", "cdnmanage"];
   return (
     <div className="site-nav-bg ">
       <div className="site-nav-container">
@@ -57,19 +66,22 @@ const Index: FC<IProps> = ({ navList }: IProps): ReactElement => {
           {navList.map((item, index) => (
             <li
               className={
-                navPath === item.toLowerCase() ? "header-bot-nav-active" : ""
+                navPath === item.mainPath.toLowerCase()
+                  ? "header-bot-nav-active"
+                  : ""
               }
               key={index}
             >
               {currentPath.length >= 2 ? (
-                <NavLink to={`/${parentPath}/${item.toLowerCase()}`}>
-                  {listMap[item] || item}
+                <NavLink to={`/${parentPath}/${item.mainPath.toLowerCase()}`}>
+                  {listMap[item.mainPath] || item.mainPath}
                 </NavLink>
               ) : (
-                <NavLink to={`/${item.toLowerCase()}`}>
-                  {listMap[item] || item}
+                <NavLink to={`/${item.mainPath.toLowerCase()}`}>
+                  {listMap[item.mainPath] || item.mainPath}
                 </NavLink>
               )}
+              {item.subPath ? <BotNav subPath={item.subPath} /> : ""}
             </li>
           ))}
           {/* <li className={navPath === "dns" ? "header-bot-nav-active" : ""}>
