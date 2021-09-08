@@ -4,7 +4,7 @@ import Domain from "./domain";
 import Record from "./record";
 const Index: FC = (): ReactElement => {
   return (
-    <div style={{ height: "200px" }}>
+    <div>
       <Switch>
         <Route path="/dns/record-management" component={Record}></Route>
         <Route path="/dns/domain-management" component={Domain}></Route>

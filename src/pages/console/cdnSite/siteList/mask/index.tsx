@@ -121,7 +121,7 @@ const Index: FC<IProps> = ({ visible, onClose, onUpdate }: IProps) => {
               defaultChecked={false}
             />
           </Form.Item>
-          <Form.Item name="note" label="Note">
+          <Form.Item labelCol={{ span: 24 }} name="note" label="Note">
             <Input.TextArea />
           </Form.Item>
           <Form.Item wrapperCol={{ offset: 20, span: 4 }}>

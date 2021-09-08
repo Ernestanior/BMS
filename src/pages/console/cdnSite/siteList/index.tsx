@@ -12,7 +12,7 @@ interface IData {
   sitename: string;
   cdnServing: string;
   operate: string;
-  dimains: number;
+  domains: number;
   records: number;
   speed: number;
   status: string;
