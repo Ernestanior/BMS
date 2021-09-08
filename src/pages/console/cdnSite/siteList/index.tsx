@@ -85,34 +85,29 @@ for (let i = 0; i < 7; i++) {
 }
 
 const Index: FC = (): ReactElement => {
-  const [selectedRowKeys, setSelectedKey] = React.useState<number[]>([]);
-  const [selectedRows, setSelectedRows] = React.useState<string[]>([]);
+  // 表格内选中的数据的key集合
+  const [selectedRowKeys, setSelectedKey] = React.useState<string[]>([]);
+  // 表格数据
   const [data, setData] = React.useState<IData[]>(source);
+  // 蒙版切换器
   const [mask, toggleMask] = React.useState<boolean>(false);
-  // console.log(selectedRowKeys);
   // let token: string;
+
   const rowSelection = {
     selectedRowKeys,
     onChange: (selectedRowKeys: any) => {
       setSelectedKey(selectedRowKeys);
     },
-    onSelect: (record: any, selected: any, selectedRows: any) => {
-      selectedRows = selectedRows.filter((item: any) => (item ? true : false));
-      const RowsList = selectedRows.reduce(
-        (pre: any, curr: any) => [...pre, curr.key],
-        []
-      );
-      // console.log(RowsList);
-      setSelectedRows(RowsList);
-    },
   };
+  // 批量删除
   const handleDetele = () => {
-    setData(data.filter((item) => selectedRows.indexOf(item.key) === -1));
+    setData(data.filter((item) => selectedRowKeys.indexOf(item.key) === -1));
   };
+  // 批量禁用
   const handleBan = () => {
     setData(
       data.map((item) => {
-        if (selectedRows.indexOf(item.key) !== -1) {
+        if (selectedRowKeys.indexOf(item.key) !== -1) {
           item.status = Status.故障;
           item.operate = "关闭";
           console.log(item);
@@ -122,24 +117,17 @@ const Index: FC = (): ReactElement => {
     );
   };
   React.useEffect(() => {
+    // 筛选功能
     const token = PubSub.subscribe("SiteSearch", (_: any, condition: any) => {
       if (condition) {
         let newSource: IData[] = source;
         for (let i in condition) {
           if (condition[i]) {
-            // console.log(i);
-            // console.log(condition[i]);
+            // CDN服务商列表筛选
             if (i === "cdnServing" && condition[i].length !== 0) {
-              // let result: IData[] = [];
-              // condition[i].forEach((element: string) => {
-              //   result = [
-              //     ...result,
-              //     ...newSource.filter((item: any) => {
-              //       return item[i] === element;
-              //     }),
-              //   ];
-              // });
+              // 此时condition[i]为选中的列表，例如['Greypanel','aliCloud']
               const result = condition[i].reduce(
+                // list为初始列表,currElement为condition[i]列表中的每个值,例如'Greypanel', 'alicloud'
                 (list: IData[], currElement: string) => [
                   ...list,
                   ...newSource.filter((item: IData) => {
@@ -148,9 +136,10 @@ const Index: FC = (): ReactElement => {
                 ],
                 []
               );
-              // console.log(result);
               newSource = result;
-            } else {
+            }
+            //其他条件的筛选
+            else {
               newSource = newSource.filter(
                 (item: any) => item[i].indexOf(condition[i]) !== -1
               );
@@ -158,19 +147,21 @@ const Index: FC = (): ReactElement => {
           }
         }
         setData(newSource);
-      } else {
+      }
+      // 如果无筛选条件则加载全部
+      else {
         setData(source);
       }
+      //组件销毁或更新前取消订阅
       return () => {
         PubSub.unsubscribe(token);
       };
     });
   }, []);
-
+  // 数据美化渲染
   const newlist = data.map((item: any) => {
     return {
       key: item.key,
-      // sitename: item.sitename,
       sitename: (
         <NavLink to={`/cdn-site/${item.sitename}`}>{item.sitename}</NavLink>
       ),
@@ -234,6 +225,7 @@ const Index: FC = (): ReactElement => {
           dataSource={newlist}
         ></Table>
       </div>
+      {/* 蒙层与添加模块 */}
       <Mask
         visible={mask}
         onClose={() => toggleMask(!mask)}

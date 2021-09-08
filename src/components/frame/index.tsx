@@ -6,15 +6,15 @@ import Console from "pages/console";
 
 const Index: FC = (): ReactElement => {
   return (
+    // 页面框架
     <>
+      {/* 页面头部区域 */}
       <Header></Header>
+      {/* 页面内容区域 */}
       <section className="frame-section">
-        {/* <Switch>
-          <Route path="/console/" component={Console}></Route>
-          <Redirect to="/console/"></Redirect>
-        </Switch> */}
         <Console></Console>
       </section>
+      {/* 页面尾部区域 */}
       <Footer></Footer>
     </>
   );

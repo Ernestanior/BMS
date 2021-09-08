@@ -7,6 +7,7 @@ import NavOne from "./siteNav/navOne";
 import NavTwo from "./siteNav/navTwo";
 import NavThree from "./siteNav/navThree";
 const Index: FC = (): ReactElement => {
+  // 获取当前路由路径
   const path = useLocation()
     .pathname.split("/")
     .filter((n) => n !== "");
@@ -14,6 +15,7 @@ const Index: FC = (): ReactElement => {
   let pathElement;
   let navElement;
 
+  //cdn站点导航
   if (path[0] === "cdn-site" && path.length >= 2) {
     pathElement = (
       <>
@@ -26,7 +28,9 @@ const Index: FC = (): ReactElement => {
       </>
     );
     navElement = <NavThree></NavThree>;
-  } else if (path[0] === "user") {
+  }
+  //用户个人导航
+  else if (path[0] === "user") {
     pathElement = (
       <>
         <span className="header-path">
@@ -38,7 +42,9 @@ const Index: FC = (): ReactElement => {
       </>
     );
     navElement = <NavTwo></NavTwo>;
-  } else {
+  }
+  //首页导航
+  else {
     pathElement = <></>;
     navElement = <NavOne></NavOne>;
   }
@@ -46,15 +52,19 @@ const Index: FC = (): ReactElement => {
     <>
       <div className="header-bg">
         <nav className="header-top-nav">
+          {/* 顶部左侧logo */}
           <NavLink to="/console">
             <h2 className="header-title">
               <WindowsFilled /> 控制台
             </h2>
           </NavLink>
+          {/* 顶部右边导航 */}
           <TopNav></TopNav>
         </nav>
+        {/* 中部路径展示 */}
         {pathElement}
       </div>
+      {/* 底部页面导航以及子导航 */}
       {navElement}
     </>
   );

@@ -14,21 +14,23 @@ const formItemLayout = {
   wrapperCol: { span: 21 },
 };
 const Index: FC = (): ReactElement => {
+  // 筛选结果汇总并保存
   const [result, setResult] = React.useState<IResult>({
     cdnServing: [],
     operate: "",
     status: "",
     sitename: "",
   });
-  // console.log(result);
 
-  const handleClose = (key: string, value: string | []) => {
-    setResult({ ...result, [key]: value });
-    PubSub.publish("SiteSearch", { ...result, [key]: value });
-  };
+  // 提交事件,发布订阅
   const onFinish = (values: any) => {
     setResult(values);
     PubSub.publish("SiteSearch", values);
+  };
+  // 筛选tag标签关闭事件,动态渲染数据
+  const handleClose = (key: string, value: string | []) => {
+    setResult({ ...result, [key]: value });
+    PubSub.publish("SiteSearch", { ...result, [key]: value });
   };
   return (
     <div className="search-box-bg">
@@ -90,6 +92,7 @@ const Index: FC = (): ReactElement => {
           </Button>
         </Form.Item>
       </Form>
+      {/* 筛选tag标签 */}
       <span className="search-tag">
         {result.sitename ||
         (result.cdnServing && result.cdnServing.length) ||

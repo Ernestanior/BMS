@@ -27,8 +27,10 @@ const formItemLayout = {
 };
 const { Option } = Select;
 const Index: FC<IProps> = ({ visible, onClose, onUpdate }: IProps) => {
+  // 提交按钮
   const onFinish = (value: any) => {
     console.log(value.sitename);
+    // 数据子传父
     onUpdate({
       key: "aa",
       sitename: value.sitename,

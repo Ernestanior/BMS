@@ -124,20 +124,20 @@ let source = [
 ];
 
 const Index: FC = (): ReactElement => {
-  const [selectedRowKeys, setSelectedKey] = React.useState<number[]>([]);
+  // 选中数据的key集合列表
+  const [selectedRowKeys, setSelectedKey] = React.useState<string[]>([]);
+  // 数据保存
   const [data, setData] = React.useState<IData[]>(source);
-  // console.log(selectedRowKeys);
   // let token: string;
-  const onSelectChange = (selectedRowKeys: any) => {
-    setSelectedKey(selectedRowKeys);
-  };
   const rowSelection = {
     selectedRowKeys,
-    onChange: onSelectChange,
+    onChange: (selectedRowKeys: any) => {
+      setSelectedKey(selectedRowKeys);
+    },
   };
   React.useEffect(() => {
+    // 订阅record筛选条件
     PubSub.subscribe("RecordSearch", (_: any, condition: any) => {
-      // console.log(condition);
       if (condition) {
         let newSource: IData[] = source;
         for (let i in condition) {
@@ -151,11 +151,10 @@ const Index: FC = (): ReactElement => {
       }
     });
   }, []);
-
+  // 美化渲染数据
   const newlist = data.map((item: IData) => {
     return {
       key: item.key,
-      // sitename: item.sitename,
       record: item.record,
       domain: item.domain,
       cname: item.cname,

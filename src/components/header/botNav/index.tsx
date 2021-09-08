@@ -11,6 +11,7 @@ const Index: FC<IProps> = ({ subPath }: IProps): ReactElement => {
   const currentPath = useLocation().pathname;
 
   return (
+    // 底部子导航
     <div className="bot-nav-bg">
       <ul className="bot-nav-container">
         {subPath.map((item: any) => (

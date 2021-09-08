@@ -16,12 +16,15 @@ const Index: FC = (): ReactElement => {
     { key: "", title: "服务商管理" },
     { key: "", title: "证书管理" },
   ];
+  // 退出登录按钮
   const handleClick = () => {
     history.replace("/login");
   };
   return (
+    // 下拉导航组件
     <div className="header-user-container">
       <Row className="header-user-funclist">
+        {/* 导航列表 */}
         {funcList.map((item, index) => {
           return (
             <Col span={12} key={index} className="header-user-funcitem">

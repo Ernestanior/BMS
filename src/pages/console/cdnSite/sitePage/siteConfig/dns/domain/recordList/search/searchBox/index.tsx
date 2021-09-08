@@ -15,18 +15,19 @@ const formItemLayout = {
   wrapperCol: { span: 15 },
 };
 const Index: FC = (): ReactElement => {
+  // 筛选条件汇总并保存
   const [result, setResult] = React.useState<IResult>({
     record: "",
     domain: "",
     dnsStatus: "",
     sslStatus: "",
   });
-  // console.log(result);
-
+  // tag标签关闭事件
   const handleClose = (key: string, value: string) => {
     setResult({ ...result, [key]: value });
     PubSub.publish("RecordSearch", { ...result, [key]: value });
   };
+  // 数据提交事件
   const onFinish = (values: any) => {
     setResult(values);
     PubSub.publish("RecordSearch", values);
@@ -68,6 +69,7 @@ const Index: FC = (): ReactElement => {
           </Button>
         </Form.Item>
       </Form>
+      {/* tag标签组件 */}
       <span className="search-tag">
         {result.record || result.domain || result.dnsStatus || result.sslStatus
           ? "当前位置:"

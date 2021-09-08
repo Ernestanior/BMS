@@ -12,6 +12,7 @@ interface IUser {
   time: string;
 }
 const Index: FC = (): ReactElement => {
+  // 数据读取并保存
   const [userData, setUserData] = useState<IUser>({
     name: "Ernest",
     email: "ernest_l@greypanel.com",
@@ -19,8 +20,9 @@ const Index: FC = (): ReactElement => {
     language: "English",
     time: "2021",
   });
+  // 展示模式和修改模式的切换
   const [mode, setMode] = useState<Boolean>(false);
-
+  // 修改内容提交
   const onFinish = (value: any) => {
     console.log(value);
     setUserData({
@@ -30,6 +32,7 @@ const Index: FC = (): ReactElement => {
       language: value.language,
       time: "2022",
     });
+    // 提交后切换成展示模式
     setMode(false);
   };
   return (

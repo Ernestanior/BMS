@@ -15,6 +15,7 @@ const Index: FC = () => {
   function handleChange(value: any) {
     console.log(value);
   }
+  // 获取全部输入数据
   const onFinish = ({ username, password }: IValue) => {
     if (username === "ernest" && password === "123") {
       history.replace("/home");
@@ -22,7 +23,7 @@ const Index: FC = () => {
       alert("Invalid username or password");
     }
   };
-
+  //格式不正确报错
   const onFinishFailed = (errorInfo: any) => {
     console.log(errorInfo);
   };
@@ -36,6 +37,7 @@ const Index: FC = () => {
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
       >
+        {/* 用户名 */}
         <Form.Item
           name="username"
           rules={[{ required: true, message: "Please input your username!" }]}
@@ -45,7 +47,7 @@ const Index: FC = () => {
             <Input bordered={false} size="large" placeholder="Username" />
           </div>
         </Form.Item>
-
+        {/* 用户密码 */}
         <Form.Item
           name="password"
           rules={[{ required: true, message: "Please input your password!" }]}
@@ -59,9 +61,11 @@ const Index: FC = () => {
             />
           </div>
         </Form.Item>
+        {/* 验证码 */}
         <Form.Item>
           <ReCAPTCHA sitekey="Your key" onChange={handleChange}></ReCAPTCHA>
         </Form.Item>
+        {/* 提交按钮 */}
         <Form.Item wrapperCol={{ span: 24 }}>
           <Button type="primary" htmlType="submit" className="login-submit">
             Submit
