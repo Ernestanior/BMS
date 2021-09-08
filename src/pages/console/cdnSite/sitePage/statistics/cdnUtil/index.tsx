@@ -6,8 +6,8 @@ import { Redirect, Route, Switch, useLocation } from "react-router-dom";
 const Index: FC = (): ReactElement => {
   return (
     <div className="sys-manage-userlist-container">
-      <SideBar title="IP白名单"></SideBar>
-      <div>IP白名单</div>
+      <SideBar title="CDN利用率统计"></SideBar>
+      <div>cdn利用率统计</div>
     </div>
   );
 };

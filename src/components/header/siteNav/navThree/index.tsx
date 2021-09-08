@@ -70,25 +70,27 @@ const Index: FC = (): ReactElement => {
               ]}
             ></BotNav> */}
           </li>
-          <li className={navPath === "analyse" ? "header-bot-nav-active" : ""}>
-            <NavLink to={`${parentPath}/analyse`}>数据统计</NavLink>
+          <li
+            className={navPath === "statistics" ? "header-bot-nav-active" : ""}
+          >
+            <NavLink to={`${parentPath}/statistics`}>数据统计</NavLink>
             <BotNav
               subPath={[
                 {
                   title: "网页性能统计",
-                  path: `${parentPath}/analyse/web-performance`,
+                  path: `${parentPath}/statistics/web-performance`,
                 },
                 {
-                  title: "CDN使用统计",
-                  path: `${parentPath}/analyse/cdn-utilization`,
+                  title: "CDN利用率统计",
+                  path: `${parentPath}/statistics/cdn-utilization`,
                 },
                 {
                   title: "平台统计",
-                  path: `${parentPath}/analyse/platforms`,
+                  path: `${parentPath}/statistics/platforms`,
                 },
                 {
                   title: "使用率统计",
-                  path: `${parentPath}/analyse/usage`,
+                  path: `${parentPath}/statistics/usage`,
                 },
               ]}
             ></BotNav>

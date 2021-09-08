@@ -20,11 +20,6 @@ const Index: FC = (): ReactElement => {
   );
   return (
     <div className="sub-page-container">
-      {/* <SideBar
-        title="AI策略配置"
-        linkList={[{ text: "gg", path: "/home/gg" }]}
-      /> */}
-      <SideBar title="AI策略配置" />
       <div className="ai-setting-container">
         <h3 className="ai-setting-text">CDN服务器商切换设置</h3>
         <Dropdown

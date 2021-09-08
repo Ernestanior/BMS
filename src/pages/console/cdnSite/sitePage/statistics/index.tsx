@@ -10,22 +10,22 @@ const Index: FC = (): ReactElement => {
     <div>
       <Switch>
         <Route
-          path="/cdn-site/:sitename/analyse/cdn-utilization"
+          path="/cdn-site/:sitename/statistics/cdn-utilization"
           component={CdnUtil}
         ></Route>
         <Route
-          path="/cdn-site/:sitename/analyse/platforms"
+          path="/cdn-site/:sitename/statistics/platforms"
           component={Platform}
         ></Route>
         <Route
-          path="/cdn-site/:sitename/analyse/usage"
+          path="/cdn-site/:sitename/statistics/usage"
           component={Usage}
         ></Route>
         <Route
-          path="/cdn-site/:sitename/analyse/web-performance"
+          path="/cdn-site/:sitename/statistics/web-performance"
           component={WebPerform}
         ></Route>
-        <Redirect to="/cdn-site/:sitename/analyse/web-performance"></Redirect>
+        <Redirect to="/cdn-site/:sitename/statistics/web-performance"></Redirect>
       </Switch>
     </div>
   );
