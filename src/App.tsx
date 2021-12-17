@@ -1,24 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
+import React from "react";
+import "./App.less";
+import Login from "@/pages/login";
+import Header from "@/components/header";
+import Footer from "@/components/footer";
+import Console from "@/pages/console";
 function App() {
+  const accountInfo = "ernest"
+  if (!accountInfo) {
+    return <Login />
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {/* 页面头部区域 */}
+      <Header></Header>
+      {/* 页面内容区域 */}
+      <section className="frame-section">
+        <Console></Console>
+      </section>
+      {/* 页面尾部区域 */}
+      <Footer></Footer>
     </div>
   );
 }
