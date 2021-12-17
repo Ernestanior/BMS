@@ -1,0 +1,35 @@
+@mainColor: #203770;
+@secondColor: #e97335;
+.add-site-mask {
+  // overflow: scroll;
+  // min-width: 900px;
+  .add-site-mask-msg {
+    background-color: #fbf5e2;
+    font-size: 15px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    ol {
+      list-style: decimal;
+      padding-left: 30px;
+    }
+  }
+}
+.ant-drawer-header {
+  background: -webkit-linear-gradient(top, #2549a5, @mainColor);
+  .ant-drawer-title {
+    color: #fff;
+    font-weight: 550;
+  }
+  .ant-drawer-close {
+    color: #fff;
+  }
+}
+.default-button {
+  background-color: @mainColor;
+  border: 0;
+  &:hover {
+    background-color: #2d54b6;
+  }
+}
